@@ -33,40 +33,21 @@ public class BallSortMasterSolver {
         while (!stepsLeft.isEmpty()) {
             Step step = stepsLeft.removeFirst();
             if (step.steps() == processedSteps) {
-                System.out.printf("processedSteps: %d, steps: %d, stepsLeft: %d%n", processedSteps, steps.size(), stepsLeft.size());
+                logProgress();
                 processedSteps += 1;
             }
             Step solvedStep = createStepsFrom(step);
             if (solvedStep != null) {
+                logProgress();
                 printSolution(solvedStep);
-                System.out.printf("processedSteps: %d, steps: %d, stepsLeft: %d%n", processedSteps, steps.size(), stepsLeft.size());
                 return;
             }
         }
-//        int sizeBottles = problem0026.getSize();
-//        while (!problem0026.isSolved() && !stepsToDo.isEmpty()) {
-//            problem0026 = stepsToDo.removeFirst();
-//            for (int from = 0; from < sizeBottles; from += 1) {
-//                Bottle fromBottle = problem0026.getBottle(from);
-//                if (fromBottle.isEmpty()) {
-//                    continue;
-//                }
-//                Colour ball = fromBottle.getTopBall();
-//                for (int to = 0; to < sizeBottles; to += 1) {
-//                    if (to == from) {
-//                        continue;
-//                    }
-//                    Bottle toBottle = problem0026.getBottle(to);
-//                    if (toBottle.isFull()) {
-//                        continue;
-//                    }
-//                    if (toBottle.isEmpty() || toBottle.getTopBall() == ball) {
-//                        Bottle fromBottleNew = fromBottle.removeTopBall();
-//                        Bottle toBottleNew = toBottle.addBall(ball);
-//                    }
-//                }
-//            }
-//        }
+    }
+
+    private void logProgress() {
+        System.out.printf("processedSteps: %d, steps: %d, stepsLeft: %d%n", processedSteps, steps.size(),
+                stepsLeft.size());
     }
 
     private void printSolution(Step step) {
