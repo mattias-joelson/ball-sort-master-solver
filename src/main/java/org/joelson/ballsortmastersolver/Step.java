@@ -23,6 +23,10 @@ public record Step(int steps, String description, Bottle[] bottles) {
         }
     }
 
+    public static Step of(int steps, String description, Bottle... bottles) {
+        return new Step(steps, description, bottles);
+    }
+
     private static Set<Bottle> toSet(Bottle[] bottles) {
         return Set.copyOf(Arrays.asList(bottles));
     }
@@ -46,10 +50,6 @@ public record Step(int steps, String description, Bottle[] bottles) {
     @Override
     public String toString() {
         return String.format("Step[%s, %s, %s]", steps, description, Arrays.toString(bottles));
-    }
-
-    public static Step of(int steps, String description, Bottle... bottles) {
-        return new Step(steps, description, bottles);
     }
 
     public boolean isSolved() {
