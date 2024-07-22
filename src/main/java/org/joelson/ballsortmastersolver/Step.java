@@ -2,6 +2,7 @@ package org.joelson.ballsortmastersolver;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
 public record Step(int steps, String description, Bottle[] bottles) {
 
@@ -22,20 +23,24 @@ public record Step(int steps, String description, Bottle[] bottles) {
         }
     }
 
+    private static Set<Bottle> toSet(Bottle[] bottles) {
+        return Set.copyOf(Arrays.asList(bottles));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (o instanceof Step step) {
-            return Objects.deepEquals(bottles, step.bottles);
+            return toSet(bottles).equals(toSet(step.bottles));
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(bottles);
+        return toSet(bottles).hashCode();
     }
 
     @Override
