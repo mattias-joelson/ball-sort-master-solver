@@ -15,7 +15,7 @@ public class Problems {
     }
 
     public static Step problem0026() {
-        return Step.of(
+        return Step.of(0, "start position",
                 Bottle.ofFour(BLUE, WHITE, BROWN, WHITE),
                 Bottle.ofFour(WHITE, YELLOW, BROWN, GREEN),
                 Bottle.ofFour(RED, RED, BLUE, GREEN),
