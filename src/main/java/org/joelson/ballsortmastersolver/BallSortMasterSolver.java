@@ -1,5 +1,7 @@
 package org.joelson.ballsortmastersolver;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,24 +32,30 @@ public class BallSortMasterSolver {
     }
 
     private void solve() {
+        Instant startInstant = Instant.now();
         while (!stepsLeft.isEmpty()) {
             Step step = stepsLeft.removeFirst();
             if (step.steps() == processedSteps) {
-                logProgress();
+                logProgress(startInstant);
                 processedSteps += 1;
             }
             Step solvedStep = createStepsFrom(step);
             if (solvedStep != null) {
-                logProgress();
+                logProgress(startInstant);
                 printSolution(solvedStep);
                 return;
             }
         }
     }
 
-    private void logProgress() {
-        System.out.printf("processedSteps: %d, steps: %d, stepsLeft: %d%n", processedSteps, steps.size(),
-                stepsLeft.size());
+    private void logProgress(Instant startInstant) {
+        Duration duration = Duration.between(startInstant, Instant.now());
+        System.out.printf("[%s] processedSteps: %d, steps: %d, stepsLeft: %d%n",
+                formatDuration(duration), processedSteps, steps.size(), stepsLeft.size());
+    }
+
+    private String formatDuration(Duration duration) {
+        return String.format("%d.%03d", duration.toSeconds(), duration.toMillisPart());
     }
 
     private void printSolution(Step step) {
