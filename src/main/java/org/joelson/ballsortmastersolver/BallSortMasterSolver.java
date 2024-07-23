@@ -35,7 +35,7 @@ public class BallSortMasterSolver {
         Instant startInstant = Instant.now();
         while (!stepsLeft.isEmpty()) {
             Step step = stepsLeft.removeFirst();
-            if (step.steps() == processedSteps) {
+            if (step.getSteps() == processedSteps) {
                 logProgress(startInstant);
                 processedSteps += 1;
             }
@@ -68,7 +68,7 @@ public class BallSortMasterSolver {
 
     private Step createStepsFrom(Step step) {
         int noBottles = step.getSize();
-        int newSteps = step.steps() + 1;
+        int newSteps = step.getSteps() + 1;
         for (int from = 0; from < noBottles; from += 1) {
             Bottle fromBottle = step.getBottle(from);
             if (fromBottle.isEmpty()) {
@@ -97,7 +97,7 @@ public class BallSortMasterSolver {
                         }
                     }
                     String description = String.format("Move %s ball from %d to %d.", topBall, from, to);
-                    Step newStep = new Step(newSteps, description, newBottles);
+                    Step newStep = Step.of(newSteps, description, newBottles);
                     if (!steps.containsKey(newStep)) {
                         steps.put(newStep, step);
                         stepsLeft.add(newStep);

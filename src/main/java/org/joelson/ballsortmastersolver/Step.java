@@ -4,15 +4,22 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
-public record Step(int steps, String description, Bottle[] bottles) {
+public class Step {
 
-    public Step {
+    private final int steps;
+    private final String description;
+    private final Bottle[] bottles;
+    private final Set<Bottle> bottleSet;
+
+    private Step(int steps, String description, Bottle[] bottles) {
         if (steps < 0) {
             throw new IllegalArgumentException("Steps < 0");
         }
+        this.steps = steps;
         if (description.isEmpty()) {
             throw new IllegalArgumentException("No description.");
         }
+        this.description = description;
         Objects.requireNonNull(bottles);
         Class<? extends Bottle> bottleClass = bottles[0].getClass();
         for (Bottle bottle : bottles) {
@@ -21,14 +28,12 @@ public record Step(int steps, String description, Bottle[] bottles) {
                 throw new IllegalArgumentException("Bottle of different type.");
             }
         }
+        this.bottles = bottles;
+        this.bottleSet = Set.copyOf(Arrays.asList(bottles));
     }
 
     public static Step of(int steps, String description, Bottle... bottles) {
         return new Step(steps, description, bottles);
-    }
-
-    private static Set<Bottle> toSet(Bottle[] bottles) {
-        return Set.copyOf(Arrays.asList(bottles));
     }
 
     @Override
@@ -37,14 +42,14 @@ public record Step(int steps, String description, Bottle[] bottles) {
             return true;
         }
         if (o instanceof Step step) {
-            return toSet(bottles).equals(toSet(step.bottles));
+            return bottleSet.equals(step.bottleSet);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return toSet(bottles).hashCode();
+        return bottleSet.hashCode();
     }
 
     @Override
@@ -59,6 +64,10 @@ public record Step(int steps, String description, Bottle[] bottles) {
             }
         }
         return true;
+    }
+
+    public int getSteps() {
+        return steps;
     }
 
     public int getSize() {
