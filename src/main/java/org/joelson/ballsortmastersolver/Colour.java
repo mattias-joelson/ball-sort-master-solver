@@ -1,6 +1,6 @@
 package org.joelson.ballsortmastersolver;
 
 public enum Colour {
-    RED, YELLOW, GREEN, BLUE, PURPLE,
-    WHITE, BROWN,
+    RED, ORANGE, YELLOW, LIGHT_GREEN, GREEN, BLUE, PURPLE,
+    BLACK, WHITE, BROWN,
 }

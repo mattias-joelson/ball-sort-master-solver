@@ -24,8 +24,8 @@ public class BallSortMasterSolver {
 
     public static void main(String[] args) {
         System.out.println("Hello, world!");
-        Step problem0026 = Problems.problem0026();
-        BallSortMasterSolver solver = new BallSortMasterSolver(problem0026);
+        Step problem = Problems.problem0091();
+        BallSortMasterSolver solver = new BallSortMasterSolver(problem);
         solver.solve();
     }
 
