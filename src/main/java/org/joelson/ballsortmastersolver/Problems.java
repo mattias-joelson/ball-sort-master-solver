@@ -106,4 +106,24 @@ public class Problems {
                 Bottle.emptyOfFour()
         );
     }
+
+    public static Step problem0114() {
+        return Step.of(0, START_POSITION,
+                Bottle.ofThree(RED, WHITE, PURPLE),
+                Bottle.ofThree(BLACK, GREEN, BLACK),
+                Bottle.ofThree(BROWN, BLUE, LIGHT_GREEN),
+                Bottle.ofThree(PETROLIUM, ORANGE, YELLOW),
+                Bottle.ofThree(LIGHT_GREEN, BROWN, WHITE),
+
+                Bottle.ofThree(YELLOW, PETROLIUM, BROWN),
+                Bottle.ofThree(PETROLIUM, BLACK, PURPLE),
+                Bottle.ofThree(YELLOW, LIGHT_GREEN, ORANGE),
+                Bottle.ofThree(GREEN, BLUE, RED),
+
+                Bottle.ofThree(PURPLE, WHITE, ORANGE),
+                Bottle.ofThree(RED, GREEN, BLUE),
+                Bottle.emptyOfThree(),
+                Bottle.emptyOfThree()
+        );
+    }
 }

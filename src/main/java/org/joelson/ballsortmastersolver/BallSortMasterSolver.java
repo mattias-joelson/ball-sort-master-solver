@@ -26,7 +26,7 @@ public class BallSortMasterSolver {
 
     public static void main(String[] args) {
         System.out.println("Hello, world!");
-        Step problem = Problems.problem0111();
+        Step problem = Problems.problem0114();
         BallSortMasterSolver solver = new BallSortMasterSolver(problem);
         solver.solve();
     }
@@ -96,7 +96,7 @@ public class BallSortMasterSolver {
                             newBottles[bottle] = step.getBottle(bottle);
                         }
                     }
-                    String description = String.format("Move %s ball from %d to %d.", topBall, from, to);
+                    String description = String.format("Move %s ball from %d to %d", topBall, from, to);
                     Step newStep = Step.of(newSteps, description, newBottles);
                     if (!steps.containsKey(newStep)) {
                         steps.put(newStep, step);
